@@ -32,18 +32,6 @@ body{
   overflow:hidden;
 }
 
-.floating span{
-  position:absolute;
-  bottom:-20%;
-  font-size:22px;
-  opacity:.18;
-  animation:floatUp linear infinite;
-}
-@keyframes floatUp{
-  from{transform:translateY(0) rotate(0deg)}
-  to{transform:translateY(-120vh) rotate(360deg)}
-}
-
 .card{
   width:100%;
   max-width:560px;
@@ -56,7 +44,7 @@ body{
 }
 
 @keyframes fade{
-  from{opacity:0;transform:translateY(16px)}
+  from{opacity:0;transform:translateY(18px)}
   to{opacity:1;transform:translateY(0)}
 }
 
@@ -78,7 +66,7 @@ p{
   display:flex;
   justify-content:center;
   gap:12px;
-  margin-top:18px;
+  margin-top:22px;
 }
 
 button{
@@ -101,15 +89,16 @@ button{
   color:var(--muted);
 }
 
+iframe{
+  border-radius:14px;
+  margin:20px 0;
+  width:100%;
+}
+
 .buttons{
   margin-top:28px;
   position:relative;
   height:100px;
-}
-
-iframe{
-  border-radius:14px;
-  margin:20px 0;
 }
 
 .signature{
@@ -122,84 +111,97 @@ iframe{
 
 <body>
 
-<div class="floating">
-  <span style="left:12%;animation-duration:28s">🌹</span>
-  <span style="left:32%;animation-duration:32s">✨</span>
-  <span style="left:54%;animation-duration:26s">🌙</span>
-  <span style="left:76%;animation-duration:30s">😉</span>
-</div>
-
 <div class="card" id="card"></div>
 
 <script>
 const steps = [
-  `
-    <h1>Hey Twinzi 🖤</h1>
-    <p>I don’t need a specific day or a month to show you how much I love you.</p>
-    <p><em>But some moments… they stay.</em> ✨</p>
-  `,
-  `
-    <p>
-      February will always feel special to me —<br>
-      because I’d never forget you in that blue dress back in
-      <span class="highlight">February 2024</span>.
-    </p>
-    <p class="highlight">
-      I noticed exactly what you were doing to me that day 🌹
-    </p>
-    <p><em>You knew. I knew. 😉</em></p>
-  `,
-  `
-    <p>
-      This February, I just wanted to start on a special note.<br>
-      Something simple. Something us.
-    </p>
+  {
+    html: `
+      <h1>Hey Twinzi 🖤</h1>
+      <p>I don’t need a specific day or a month to show you how much I love you.</p>
+      <p><em>But some moments… they stay.</em> ✨</p>
+    `,
+    next: "Alright 😌 →"
+  },
+  {
+    html: `
+      <p>
+        February will always feel special to me —<br>
+        because I’d never forget you in that blue dress back in
+        <span class="highlight">February 2024</span>.
+      </p>
+      <p class="highlight">
+        I noticed exactly what you were doing to me that day 🌹
+      </p>
+      <p><em>You knew. I knew. 😉</em></p>
+    `,
+    next: "Keep going 💗 →"
+  },
+  {
+    html: `
+      <p>
+        This February, I just wanted to start on a special note.<br>
+        Something simple. Something us.
+      </p>
 
-    <p>
-      You’re my sweetie, my babyjii, my cutie patootie, my bebdi,
-      my pretty lil baby — my everything, really.
-    </p>
+      <p>
+        You’re my sweetie, my babyjii, my cutie patootie, my bebdi,
+        my pretty lil baby — my everything, really.
+      </p>
 
-    <p>
-      And honestly, you make even the most normal days feel softer 🥹
-    </p>
+      <p>
+        And honestly, you make even the most normal days feel softer 🥹
+      </p>
 
-    <p class="highlight"><strong>I made this playlist for you.</strong></p>
-    <p><em>For all the days till we meet.</em> 🌙</p>
+      <p class="highlight"><strong>I made this playlist for you.</strong></p>
+      <p><em>For all the days till we meet.</em> 🌙</p>
+    `,
+    next: "Okay… play it 😌 →"
+  },
+  {
+    html: `
+      <iframe
+        src="https://open.spotify.com/embed/playlist/01az2bZFkWGuzy6S51fkPv"
+        height="360" style="border:none;"></iframe>
+    `,
+    next: "Continue →"
+  },
+  {
+    html: `
+      <p>
+        I can never thank Allah enough for bringing us together —
+        for blessing me with a partner who is truly a gem of a person.
+      </p>
 
-    <iframe
-      src="https://open.spotify.com/embed/playlist/01az2bZFkWGuzy6S51fkPv"
-      width="100%" height="360" style="border:none;"></iframe>
-  `,
-  `
-    <p>
-      I can never thank Allah enough for bringing us together —
-      for blessing me with a partner who is truly a gem of a person.
-    </p>
+      <p class="highlight">
+        Forever and ever, <em>fid dunya wal akhirah</em>, my hayati.
+      </p>
 
-    <p class="highlight">
-      Forever and ever, <em>fid dunya wal akhirah</em>, my hayati.
-    </p>
+      <p><strong>Relax.</strong><br>This part was never really a question anyway. 😉</p>
+    `,
+    next: "One last thing 👀 →"
+  },
+  {
+    html: `
+      <h2>Okay Shaz, babe…<br>will you be my Valentine?</h2>
 
-    <p><strong>Relax.</strong><br>This part was never really a question anyway. 😉</p>
-  `,
-  `
-    <h2>Okay Shaz, babe…<br>will you be my Valentine?</h2>
-
-    <div class="buttons">
-      <button class="primary" onclick="yes()">YES 💗</button>
-      <button class="secondary" id="noBtn">No 😐</button>
-    </div>
-  `
+      <div class="buttons">
+        <button class="primary" onclick="yes()">YES 💗</button>
+        <button class="secondary" id="noBtn">No 😐</button>
+      </div>
+    `,
+    final:true
+  }
 ];
 
 let index = 0;
 const card = document.getElementById("card");
 
 function render(){
-  card.innerHTML = steps[index];
+  const step = steps[index];
+  card.innerHTML = step.html;
 
-  if(index < steps.length - 1){
+  if(!step.final){
     const controls = document.createElement("div");
     controls.className = "controls";
 
@@ -216,7 +218,7 @@ function render(){
 
     const next = document.createElement("button");
     next.className = "primary";
-    next.textContent = "Continue →";
+    next.textContent = step.next;
     next.onclick = () => {
       index++;
       render();
